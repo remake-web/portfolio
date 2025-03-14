@@ -1,0 +1,147 @@
+@charset "utf-8";
+@use "sass:map";
+
+/*--------------------------------------------------
+Variable
+--------------------------------------------------*/
+
+/*---------- Basic ----------*/
+
+$basicFontSize: 0.52vw;// 10px ÷ 1920px
+$basicFontWeight: 500;
+$basicFontFamily: 'Zen Maru Gothic', serif;
+$basicFontColor: #000;
+$basicBackgroundColor: #F8F8F8;
+
+$imgPath: '/assets/img/';
+
+/*---------- Font ----------*/
+$font01: 'DM Sans', sans-serif;
+
+/*---------- Color ----------*/
+
+//テーマカラー
+$tm_col: #4482CB;
+
+//アクセントカラー
+$accent_col01: #97916B;
+$accent_col02: #366088;
+$accent_col03: #ABABAB;
+$accent_col04: #979797;
+$accent_col05: #888888;
+$accent_col06: #707070;
+
+// 背景カラー
+$bg_col01: #F8F8F8;
+$bg_col02: #000719;
+
+
+/*---------- etc ----------*/
+
+$ts01: .3s ease-in-out; 
+$ts02: .5s ease-out; 
+$opacity: .7;
+
+// インナー幅 
+$pc_maxInr: 1360px;
+$pc_inr: 1260px;
+$pc_minInr: 960px;
+
+// ヘッダー高さ 
+$pc_hdr_h: 100px;
+$sp_hdr_h: 64px;
+
+/*--------------------------------------------------
+Mixin
+--------------------------------------------------*/
+
+/*---------- Responsive ----------*/
+
+$breakpoints: (
+  'common': '',//共通
+  'pc': 'all and (min-width: 768px)',
+	'lg': 'all and (max-width: 1439px)',
+	'tab': 'all and (max-width: 1080px)',
+	'sp': 'screen and (max-width: 767px)'
+);
+
+@mixin responsive($media, $division: '') {
+	@if map.has-key($breakpoints, $media) {
+		@if $media == 'common' {
+			@content;
+		}
+		@else {
+			@if $division != '' { //PC幅内で切り替えがあるとき
+				$division: " and (max-width:#{$division})";
+			}
+			@media #{map.get($breakpoints, $media)}#{$division} {
+				@content;
+			}
+		}
+	}
+
+	//マップ型で定義されていない値が呼び出された時はエラーを返す
+	@else {
+		@error "指定されたブレークポイントは定義されていません。" + "指定できるブレークポイントは次のとおりです。 -> #{map.keys($breakpoints)}";
+	}
+}
+
+@mixin hover {
+  transition: $ts01;
+
+	&:hover{
+		opacity: $opacity;
+	}
+}
+
+/*---------- アニメーション ----------*/
+//下から
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+		transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+		transform: translateY(0);
+  }
+}
+@mixin fade_in {
+	animation: fadeIn $ts02 0s forwards;
+}
+
+//左から
+@keyframes fadeIn_left {
+  0% {
+    opacity: 0;
+		transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+		transform: translateX(0);
+  }
+}
+@mixin fade_left {
+	transform: translateX(-20px);
+	opacity: 0;
+	animation: fadeIn_left $ts02 0s forwards;
+}
+
+//右から
+@keyframes fadeIn_right {
+  0% {
+    opacity: 0;
+		transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+		transform: translateX(0);
+  }
+}
+@mixin fade_right {
+	transform: translateX(20px);
+	opacity: 0;
+	animation: fadeIn_right $ts02 0s forwards;
+}
+
+/*---------- 画像 ----------*/

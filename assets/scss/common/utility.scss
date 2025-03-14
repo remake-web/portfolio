@@ -1,0 +1,153 @@
+@charset "utf-8";
+@use 'global' as *;
+
+/*--------------------------------------------------
+Font size
+--------------------------------------------------*/
+
+$fz_max: 50; //フォントサイズ最大値 変更可
+
+@each $media, $query in $breakpoints {
+  @include responsive($media) {
+    @for $i from 10 through $fz_max {
+      $media_add: '';
+      @if $media != 'common' {
+        $media_add: _#{$media};
+      }
+      .fz#{$i}#{$media_add} {
+        font-size: (1px * $i) !important;
+      }
+    }
+  }
+}
+
+/*--------------------------------------------------
+Text align
+--------------------------------------------------*/
+
+@each $media, $query in $breakpoints {
+  @include responsive($media) {
+    $media_add: '';
+    @if $media != 'common' {
+      $media_add: _#{$media};
+    }
+    .x1#{$media_add} {
+      text-align: left !important;
+    }
+    .x2#{$media_add} {
+      text-align: center !important;
+    }
+    .x3#{$media_add} {
+      text-align: right !important;
+    }
+  }
+}
+
+/*--------------------------------------------------
+Margin & Padding
+--------------------------------------------------*/
+
+$space_max: 100; //余白最大値 変更可
+$directions: ('top','t'),('right','r'),('bottom','b'),('left','l');
+
+@each $media ,$query in $breakpoints {
+  @include responsive($media) {
+    $media_add: '';
+    @if $media != 'common' {
+      $media_add: _#{$media};
+    }
+
+    .m0#{$media_add} {
+      margin: 0 !important;
+    }
+    .p0#{$media_add} {
+      padding: 0 !important;
+    }
+
+    @each $direction, $d in $directions {
+      .m#{$d}0#{$media_add} {
+        margin-#{$direction}: 0 !important;
+      }
+
+      @for $i from 1 through $space_max {
+        $num: $i;
+
+        .m#{$d}#{$num}#{$media_add} {
+          margin-#{$direction}: 1px * $i !important;
+        }
+
+        .m#{$d}-#{$num}#{$media_add} {
+          margin-#{$direction}: -1px * $i !important;
+        }
+
+        .p#{$d}#{$num}#{$media_add} {
+          padding-#{$direction}: 1px * $i !important;
+        }
+      }
+    }
+  }
+}
+
+/*--------------------------------------------------
+Flex
+--------------------------------------------------*/
+
+@each $media ,$query in $breakpoints {
+  @include responsive($media) {
+    $media_add: '';
+    @if $media != 'common' {
+      $media_add: _#{$media};
+    }
+    .flex#{$media_add} {
+      display: flex;
+    }
+    .fd_r#{$media_add} {
+      flex-direction: row;
+    }
+    .fd_rr#{$media_add} {
+      flex-direction: row-reverse;
+    }
+    .fd_c#{$media_add} {
+      flex-direction: column;
+    }
+    .fd_cr#{$media_add} {
+      flex-direction: column-reverse;
+    }
+    .fw_nw#{$media_add} {
+      flex-wrap: nowrap;
+    }
+    .fw_w#{$media_add} {
+      flex-wrap: wrap;
+    }
+    .fs_0#{$media_add} {
+      flex-shrink: 0;
+    }
+    .jc_fs#{$media_add} {
+      justify-content: flex-start;
+    }
+    .jc_fe#{$media_add} {
+      justify-content: flex-end;
+    }
+    .jc_c#{$media_add} {
+      justify-content: center;
+    }
+    .jc_sb#{$media_add} {
+      justify-content: space-between;
+    }
+    .jc_sa#{$media_add} {
+      justify-content: space-around;
+    }
+    .ai_fs#{$media_add} {
+      align-items: flex-start;
+    }
+    .ai_fe#{$media_add} {
+      align-items: flex-end;
+    }
+    .ai_c#{$media_add} {
+      align-items: center;
+    }
+    .ai_b#{$media_add} {
+      align-items: baseline;
+    }
+  }
+}

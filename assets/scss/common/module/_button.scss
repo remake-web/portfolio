@@ -1,0 +1,56 @@
+@charset "utf-8";
+@use '../global' as *;
+
+/*--------------------------------------------------
+汎用ボタン
+--------------------------------------------------*/
+.btn01{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 270px;
+  height: 65px;
+  padding: 0 30px;
+  font-size: 16px;
+  line-height: 1;
+  border: 2px solid #000;
+  border-radius: 50px;
+  position: relative;
+
+  &::after{
+    position: absolute;
+    display: block;
+    content: "";
+    width: 10px;
+    height: 17px;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: url(/assets/img/common/arr.svg)no-repeat center center / contain;
+  }
+}
+
+@include responsive(pc){
+  .btn01{
+    transition: $ts01;
+
+    &::after{
+      transition: $ts01;
+    }
+
+    &:hover{
+      color: #fff;
+      background-color: #000;
+
+      &::after{
+        background: url(/assets/img/common/arr_white.svg)no-repeat center center / contain;
+      }
+    }
+  }
+}
+
+@include responsive(sp){
+  .btn01{
+  
+  }
+}

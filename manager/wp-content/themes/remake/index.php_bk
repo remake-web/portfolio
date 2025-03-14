@@ -1,0 +1,200 @@
+<?php
+$page_slug = 'top';
+$page_dsc = '';
+
+$add_css = <<<CSSDOC
+<!-- Splide -->
+<link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+CSSDOC;
+
+$page_css = $page_slug; //cssファイル名
+
+get_header();
+?>
+
+<main class="mainContents top_mainContents">
+  <section class="top_about pc_maxInr">
+    <figure class="top_about_img"><img src="/assets/img/top/top_about.png" alt="Re:makeについて" width="500" height="444"></figure>
+
+    <div class="top_about_con">
+      <p class="top_about_con_subttl">Webサイト制作スタジオのRe:makeです。</p>
+      <h2 class="top_about_con_ttl">デザインやホームページなど<br>Web事業に関わる制作をしています。</h2>
+      <p class="top_about_con_btn"><a href="/about/" class="btn01">Re:makeについて</a></p>
+    </div>
+  </section>
+
+<?php 
+$args = array(
+	'post_type' => 'works',
+	'posts_per_page' => 5,
+	'post_status' => 'publish',
+	'orderby' => 'post_date',
+	'order' => 'DESC',
+);
+$the_query = new WP_Query($args);
+if($the_query->have_posts()) :
+?>
+  <section class="top_card top_works">
+    <h2 class="top_card_ttl ttl01">制作実績<span>WORKS</span></h2>
+    <p class="top_card_desc">Re:makeで携わった制作の一部をご紹介しています。<br>その他の制作実績や情報についてはお問い合わせ下さいませ。</p>
+    <div class="swiper top_card_sldr works_splide">
+      <ul class="swiper-wrapper">
+<?php 
+while($the_query->have_posts()): $the_query->the_post(); 
+$img = ( get_the_post_thumbnail_url($post->ID, 'medium_large') ) ? get_the_post_thumbnail_url($post->ID, 'medium_large') : '/assets/img/common/noimg.png';
+?>
+        <li class="swiper-slide list_item">
+          <a class="list_item_link" href="<?php the_permalink(); ?>">
+            <figure class="list_item_link_img">
+              <img src="<?php echo $img;?>" alt="<?php the_title();?>" width="400" height="400" lading="lazy">
+              <figcaption><?php the_title();?></figcaption>
+            </figure>
+          </a>
+        </li>
+<?php endwhile; wp_reset_postdata();?>
+      </ul>
+    </div>
+    <p class="top_card_btn"><a href="/works/" class="btn01">もっと見る</a></p>
+  </section>
+<?php endif;?>
+
+  <!-- <section class="top_service pc_maxInr">
+    <h2 class="top_service_ttl ttl01 -center">サービス<span>SERVICE</span></h2>
+
+    <ul class="top_service_list">
+      <li class="top_service_list_item">
+        <figure class="top_service_list_item_img"><img src="/assets/img/common/icon_pc.svg" alt="Webサイト制作" width="100" height="100" loading="lazy"></figure>
+        <dl class="top_service_list_item_con">
+          <dt class="top_service_list_item_con_ttl">Webサイト制作</dt>
+          <dd class="top_service_list_item_con_desc">Webサイトの新規立ち上げや、リニューアル作業を行います。企業から個人のお店まで、業種等を問わずあらゆるサイト制作に対応いたします。</dd>
+        </dl>
+      </li>
+      <li class="top_service_list_item">
+        <figure class="top_service_list_item_img"><img src="/assets/img/common/icon_code.svg" alt="コーディング代行" width="100" height="100" loading="lazy"></figure>
+        <dl class="top_service_list_item_con">
+          <dt class="top_service_list_item_con_ttl">コーディング代行</dt>
+          <dd class="top_service_list_item_con_desc">いただいたデザインデータを忠実に再現し、そのままブラウザに反映させます。またSEOを意識したコーディングをいたします。</dd>
+        </dl>
+      </li>
+      <li class="top_service_list_item">
+        <figure class="top_service_list_item_img"><img src="/assets/img/common/icon_cms.svg" alt="Wordpress構築" width="100" height="100" loading="lazy"></figure>
+        <dl class="top_service_list_item_con">
+          <dt class="top_service_list_item_con_ttl">Wordpress構築</dt>
+          <dd class="top_service_list_item_con_desc">Webサイトの構築やカスタマイズ作業など、Word Press(ワードプレス)を使った作業のご依頼を広く承ります。</dd>
+        </dl>
+      </li>
+    </ul>
+
+    <p class="top_service_btn"><a href="" class="btn01">もっと見る</a></p>
+  </section> -->
+
+<?php 
+$args = array(
+	'post_type' => 'post',
+	'posts_per_page' => 3,
+	'post_status' => 'publish',
+	'orderby' => 'post_date',
+	'order' => 'DESC',
+);
+$the_query = new WP_Query($args);
+if($the_query->have_posts()) :
+?>
+  <section class="top_news pc_maxInr">
+    <h2 class="top_news_ttl ttl01">お知らせ<span>NEWS</span></h2>
+    <p class="top_news_desc">業務に関わる重要なお知らせを発信しています。</p>
+
+    <ul class="top_news_list news_list">
+<?php while($the_query->have_posts()): $the_query->the_post(); ?>
+      <li class="news_list_item">
+        <a href="<?php the_permalink(); ?>" class="news_list_item_link">
+          <time class="news_list_item_link_date" datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date('Y.m.d'); ?></time>
+          <p class="news_list_item_link_ttl"><?php the_title();?></p>
+        </a>
+      </li>
+<?php endwhile; wp_reset_postdata();?>
+    </ul>
+
+    <p class="top_news_btn"><a href="/news/" class="btn01">もっと見る</a></p>
+  </section>
+<?php endif;?>
+
+  <section class="top_card top_blog">
+    <h2 class="top_card_ttl ttl01">ブログ<span>BLOG</span></h2>
+    <p class="top_card_desc">日々の暮らしの中で気になった事を書いています。<br>WEB・デザイン・趣味の旅行・競馬・トレカのことなどよかったら覗いてみてください。</p>
+    <div class="swiper top_card_sldr">
+      <ul class="swiper-wrapper">
+        <li class="swiper-slide list_item">
+          <a class="list_item_link" href="">
+            <figure class="list_item_link_img">
+              <img src="/assets/img/top/works01.jpg" alt="建築会社のコーポレートサイト建築会社のコーポレートサイト" width="400" height="400" lading="lazy">
+              <figcaption>建築会社のコーポレートサイト建築会社のコーポレートサイト</figcaption>
+            </figure>
+          </a>
+        </li>
+        <li class="swiper-slide list_item">
+          <a class="list_item_link" href="">
+            <figure class="list_item_link_img">
+              <img src="/assets/img/top/works02.jpg" alt="建築会社のコーポレートサイト" width="400" height="400" lading="lazy">
+              <figcaption>建築会社のコーポレートサイト</figcaption>
+            </figure>
+          </a>
+        </li>
+        <li class="swiper-slide list_item">
+          <a class="list_item_link" href="">
+            <figure class="list_item_link_img">
+              <img src="/assets/img/top/works03.jpg" alt="建築会社のコーポレートサイト" width="400" height="400" lading="lazy">
+              <figcaption>建築会社のコーポレートサイト</figcaption>
+            </figure>
+          </a>
+        </li>
+        <li class="swiper-slide list_item">
+          <a class="list_item_link" href="">
+            <figure class="list_item_link_img">
+              <img src="/assets/img/top/works01.jpg" alt="建築会社のコーポレートサイト建築会社のコーポレートサイト建築会社のコーポレートサイト" width="400" height="400" lading="lazy">
+              <figcaption>建築会社のコーポレートサイト建築会社のコーポレートサイト建築会社のコーポレートサイト</figcaption>
+            </figure>
+          </a>
+        </li>
+        <li class="swiper-slide list_item">
+          <a class="list_item_link" href="">
+            <figure class="list_item_link_img">
+              <img src="/assets/img/top/works02.jpg" alt="建築会社のコーポレートサイト" width="400" height="400" lading="lazy">
+              <figcaption>建築会社のコーポレートサイト</figcaption>
+            </figure>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <p class="top_card_btn"><a href="" class="btn01">もっと見る</a></p>
+  </section>
+</main>
+<!-- Splide -->
+<script src="/assets/js/swiper-bundle.min.js"></script>
+<script>
+const sliders = document.querySelectorAll('.swiper');
+
+sliders.forEach((slider) => {
+  const swiper = new Swiper(slider, {
+    effect: 'slide',
+    loop: true,// 無限ループさせる
+    loopAdditionalSlides: 1, // 無限ループさせる場合に複製するスライド数
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    allowTouchMove: true,// 操作可能か
+    spaceBetween: 15,
+    speed: 1000,
+    autoplay:{
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    breakpoints:{
+      767:{//PC
+        spaceBetween: 25,
+      },
+    }
+  });
+});
+</script>
+
+<?php 
+get_footer();

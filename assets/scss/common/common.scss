@@ -1,0 +1,184 @@
+@charset "utf-8";
+
+/*------------------------------------------------ー
+Global (variable, mixin, function)
+--------------------------------------------------*/
+
+@use 'global' as *;
+
+/*--------------------------------------------------
+Setting (destyle, base, utility)
+--------------------------------------------------*/
+
+@use 'setting';
+
+/*--------------------------------------------------
+Module
+--------------------------------------------------*/
+
+@use "module/title";
+@use "module/button";
+@use "module/table";
+@use "module/list";
+@use "module/block";
+@use "module/wordpress";
+@use "module/form";
+
+/*--------------------------------------------------
+Layout
+--------------------------------------------------*/
+
+@use "header";
+@use "footer";
+
+/*---------- Common style ----------*/
+
+/*---------------------------------------------
+contents fade
+---------------------------------------------*/
+.fade {
+  opacity: 0;
+
+  &_in {
+    @include fade_in;
+  }
+
+  &_left{
+    @include fade_left;
+  }
+
+  &_right{
+    @include fade_right;
+  }
+}
+
+
+/*--------------------------------------------------
+基本スタイル
+--------------------------------------------------*/
+body {
+  font-family: $basicFontFamily;
+  font-size: $basicFontSize;
+  line-height: 1.7;
+  font-weight: $basicFontWeight;
+  letter-spacing: 0.05em;
+
+  .pc_maxInr,
+  .pc_Inr,
+  .pc_minInr{
+    margin-left: auto;
+    margin-right: auto;
+    width: 90vw;
+  }
+
+  a[href^="mailto:"] {
+    color: $tm_col;
+    text-decoration: underline;
+  }
+}
+
+@include responsive(pc) {
+  body {
+    .pc_maxInr{
+      max-width: $pc_maxInr;
+    }
+    .pc_Inr{
+      max-width: $pc_inr;
+    }
+    .pc_minInr{
+      max-width: $pc_minInr;
+    }    
+
+    .page_mainContents,
+    .top_mainContents {
+      padding-top: $pc_hdr_h;
+    }
+    
+    a[href^="mailto:"] {
+      transition: $ts01;
+      &:hover {
+        opacity: $opacity;
+      }
+    }
+  }
+}
+
+@include responsive(sp) {
+  body {
+    &.header_nav_open {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .page_mainContents,
+    .top_mainContents {
+      padding-top: $sp_hdr_h;
+    }
+
+    a[href^="tel:"] {
+      // color: $tm_col;
+      text-decoration: underline;
+    }
+  }
+}
+
+/*--------------------------------------------------
+パンくず
+--------------------------------------------------*/
+.breadcrumb{
+  &_list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 15px;
+
+    &_item{
+      &:not(:first-child){
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        &::before{
+          display: block;
+          content: "";
+          width: 7px;
+          height: 12px;
+          background: url(/assets/img/common/arr.svg)no-repeat center center / contain;
+        }
+      }
+      &_link{
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@include responsive(pc){
+  .breadcrumb{
+    margin: 25px 0 60px;
+    &_list{
+      &_item{
+        font-size: 16px;
+
+        &_link{
+          @include hover;
+        }
+      }
+    }
+  }
+}
+
+@include responsive(sp){
+  .breadcrumb{
+    margin: 20px 0 50px;
+    &_list{
+      &_item{
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+/*--------------------------------------------------
+下層共通パーツ
+--------------------------------------------------*/

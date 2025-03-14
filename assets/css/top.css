@@ -1,0 +1,316 @@
+@charset "UTF-8";
+/*--------------------------------------------------
+Variable
+--------------------------------------------------*/
+/*---------- Basic ----------*/
+/*---------- Font ----------*/
+/*---------- Color ----------*/
+/*---------- etc ----------*/
+/*--------------------------------------------------
+Mixin
+--------------------------------------------------*/
+/*---------- Responsive ----------*/
+/*---------- アニメーション ----------*/
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@-webkit-keyframes fadeIn_left {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+            transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@keyframes fadeIn_left {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+            transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@-webkit-keyframes fadeIn_right {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(20px);
+            transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@keyframes fadeIn_right {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(20px);
+            transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+/*---------- 画像 ----------*/
+/*--------------------------------------------------
+Re:makeについて
+--------------------------------------------------*/
+.top_about_img img {
+  width: 100%;
+  height: auto;
+}
+.top_about_con {
+  font-weight: 500;
+}
+.top_about_con_ttl {
+  line-height: 1.8;
+}
+
+@media all and (min-width: 768px) {
+  .top_about {
+    display: grid;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    grid-template-columns: 0.6fr 0.4fr;
+    height: calc(100vh - 100px);
+    min-height: 650px;
+  }
+  .top_about_img {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    margin-left: auto;
+  }
+  .top_about_img img {
+    max-width: 500px;
+  }
+  .top_about_con {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  .top_about_con_subttl {
+    font-size: clamp(18px, 1.811vw, 25px);
+  }
+  .top_about_con_ttl {
+    margin-top: 10px;
+    font-size: clamp(24px, 2.89vw, 40px);
+  }
+  .top_about_con_btn {
+    margin-top: 60px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .top_about {
+    margin-top: 50px;
+  }
+  .top_about_con {
+    margin-top: 60px;
+  }
+  .top_about_con_subttl {
+    font-size: 18px;
+  }
+  .top_about_con_ttl {
+    margin-top: 10px;
+    font-size: 24px;
+  }
+  .top_about_con_btn {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    margin: 40px auto 0;
+  }
+}
+/*--------------------------------------------------
+制作実績
+--------------------------------------------------*/
+@media screen and (max-width: 767px) {
+  .top_works {
+    margin-top: 80px;
+  }
+}
+/*--------------------------------------------------
+サービス
+--------------------------------------------------*/
+.top_service_list {
+  display: grid;
+}
+.top_service_list_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.top_service_list_item_con_ttl {
+  text-align: center;
+  font-weight: 500;
+}
+.top_service_list_item_con_desc {
+  color: #707070;
+  line-height: 2;
+}
+.top_service_btn {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+@media all and (min-width: 768px) {
+  .top_service {
+    margin-top: 120px;
+  }
+  .top_service_list {
+    margin-top: 40px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: min(1.8vw, 35px);
+  }
+  .top_service_list_item {
+    gap: 25px;
+    padding: clamp(31px, 4.1vw, 80px) clamp(20px, 1.5625vw, 30px);
+  }
+  .top_service_list_item_img img {
+    height: clamp(45px, 5.2vw, 100px);
+  }
+  .top_service_list_item_con_ttl {
+    font-size: clamp(22px, 2.4em, 24px);
+  }
+  .top_service_list_item_con_desc {
+    font-size: clamp(14px, 1.6em, 16px);
+    margin-top: 25px;
+  }
+  .top_service_btn {
+    margin: 60px auto 0;
+  }
+}
+@media screen and (max-width: 767px) {
+  .top_service {
+    margin-top: 80px;
+  }
+  .top_service_list {
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .top_service_list_item {
+    gap: 20px;
+    padding: 40px 20px;
+  }
+  .top_service_list_item_img img {
+    width: 80px;
+  }
+  .top_service_list_item_con_ttl {
+    font-size: 20px;
+  }
+  .top_service_list_item_con_desc {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+  .top_service_btn {
+    margin: 40px auto 0;
+  }
+}
+/*--------------------------------------------------
+お知らせ
+--------------------------------------------------*/
+.top_news_list .news_list_item:first-child a {
+  padding-top: 0;
+}
+
+@media all and (min-width: 768px) {
+  .top_news {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto 1fr;
+    gap: 0 min(4.16vw, 80px);
+    margin-top: 120px;
+  }
+  .top_news_ttl {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  .top_news_desc {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    margin-top: 40px;
+    font-size: clamp(14px, 1.8em, 18px);
+  }
+  .top_news_list {
+    grid-column: 2/3;
+    grid-row: 1/4;
+  }
+  .top_news_btn {
+    grid-column: 1/2;
+    grid-row: 3/4;
+    margin-top: 50px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .top_news {
+    margin-top: 80px;
+  }
+  .top_news_desc {
+    margin-top: 30px;
+    font-size: 16px;
+  }
+  .top_news_list {
+    margin-top: 40px;
+  }
+  .top_news_btn {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    margin: 30px auto 0;
+  }
+}
+/*--------------------------------------------------
+ブログ
+--------------------------------------------------*/
+@media all and (min-width: 768px) {
+  .top_blog {
+    margin: 120px 0;
+  }
+}
+@media screen and (max-width: 767px) {
+  .top_blog {
+    margin: 80px 0;
+  }
+}
+/*# sourceMappingURL=top.css.map */

@@ -1,0 +1,340 @@
+@charset "utf-8";
+@use 'global' as *;
+
+/*--------------------------------------------------
+お問い合わせ
+--------------------------------------------------*/
+.contact{
+  background-color: $basicBackgroundColor;
+	position: relative;
+
+	&::before{
+		position: absolute;
+		display: block;
+		content: "";
+		width: 100%;
+		height: 80%;
+		background-color: $bg_col02;
+		clip-path: polygon(0 20%, 100% 0, 100% 100%, 0% 100%);
+		left: 0;
+		bottom: -1px;
+	}
+
+  &_inr{
+		width: 90vw;
+		margin-left: auto;
+		margin-right: auto;
+		background-color: #fff;
+		box-shadow: 0 3px 6px rgb(#000, 0.16);
+		border-radius: 5px;
+    position: relative;
+    z-index: 1;
+
+		&_link{
+			a{
+				display: flex;
+				align-items: center;
+				gap: 20px;
+				color: $basicFontColor !important;
+        text-decoration: none !important;
+
+				&::before{
+					display: block;
+					content: "";
+					width: 30px;
+					height: 24px;
+					background: url(/assets/img/common/mail_icon.svg)no-repeat center center / contain;
+				}
+			}
+		}
+	}
+}
+
+@include responsive(pc){
+	.contact{
+		padding-bottom: 60px;
+		
+		&_inr{
+			max-width: 1160px;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 20px 0;
+			align-items: center;
+			justify-items: center;
+			padding: 60px 30px;
+
+			&_ttl{
+	      grid-column: 1/3;
+				grid-row: 1/2;
+			}
+	
+			&_desc{
+				grid-column: 1/3;
+				grid-row: 2/3;
+				margin-bottom: 40px;
+	      font-size: clamp(14px, 1.6em, 16px);
+			}
+	
+			&_btn{
+				grid-column: 1/2;
+				grid-row: 3/4;
+				width: 100%;
+				border-right: 1px solid $accent_col06;
+				a{
+					margin: 0 auto;
+				}
+			}
+
+			&_link{
+				grid-column: 2/3;
+				grid-row: 3/4;
+				a{
+					font-size: clamp(20px, 3em, 30px);
+				}
+			}
+		}
+	}
+}
+
+@include responsive(sp){
+	.contact{
+		padding-bottom: 30px;
+		&_inr{
+			padding: 40px 20px;
+	
+			&_desc{
+				margin-top: 20px;
+	      font-size: 14px;
+			}
+	
+			&_btn{
+				width: max-content;
+				margin: 30px auto 0;
+			}
+
+			&_link{
+				margin-top: 30px;
+				a{
+					justify-content: center;
+	        font-size: 20px;
+				}
+			}
+		}
+	}
+}
+
+/*--------------------------------------------------
+フッター
+--------------------------------------------------*/
+.footer{
+	margin-top: -1px;
+	background-color: $bg_col02;
+	&_inr{
+		&_addr{
+			&_data{
+				display: grid;
+				grid-template-columns: auto 1fr;
+				align-items: center;
+				gap: 20px;
+				font-size: 16px;
+				font-weight: 500;
+				color: #fff;
+
+				&_ttl{
+          grid-column: 1/2;
+          grid-row: 1/2;
+				}
+
+				&_con{
+					grid-column: 2/3;
+					grid-row: 1/2;
+					padding-left: 20px;
+					position: relative;
+
+					&::before{
+						position: absolute;
+						display: block;
+						content: "";
+						width: 1px;
+						height: 100%;
+						background-color: #FFF;
+						inset: 50% auto auto 0;
+						transform: translateY(-50%);
+					}
+
+					small{
+						display: block;
+						margin-top: 5px;
+					}
+				}
+			}
+		}
+
+		&_btn{
+      a{
+				color: #fff;
+				border: 1px solid #fff;
+				gap: 15px;
+
+				&::before{
+					display: block;
+					content: "";
+					width: 25px;
+					height: 20px;
+					background: url(/assets/img/common/white_mail_icon.svg)no-repeat center center / contain;
+				}
+
+				&::after{
+					display: none;
+				}
+			}
+		}
+
+		&_sns{
+			width: max-content;
+			display: grid;
+			align-items: center;
+			gap: 20px;
+
+			&::before{
+				grid-column: 2/3;
+				grid-row: 1/2;
+				display: block;
+				content: "";
+				width: 1px;
+				height: 100%;
+				background-color: #fff;
+			}
+
+			&_item{
+				&:nth-child(1){
+					grid-column: 1/2;
+					grid-row: 1/2;
+				}
+
+				&:nth-child(2){
+					grid-column: 3/4;
+					grid-row: 1/2;
+				}
+
+				&_link{
+					display: block;
+
+					img{
+						width: 18px;
+					}
+				}
+			}
+		}
+
+		&_copy{
+			text-align: center;
+			small{
+        font-size: 13px;
+				color: #fff;
+			}
+		}
+	}
+}
+
+@include responsive(pc){
+	.footer{
+		padding: 60px 0 30px;
+		&_inr{
+			display: grid;
+			grid-template-columns: auto 1fr;
+			grid-template-rows: auto auto 1fr;
+			gap: 0 30px;
+
+			&_logo{
+				grid-column: 1/2;
+				grid-row: 1/2;
+
+				&_link{
+					@include hover;
+				}
+			}
+	
+			&_addr{
+				grid-column: 1/2;
+				grid-row: 2/3;
+				margin-top: 40px;
+			}
+	
+			&_list{
+				grid-column: 2/3;
+				grid-row: 1/2;
+				min-width: 350px;
+				margin-left: auto;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: flex-end;
+				gap: 10px min(3.645vw, 70px);
+				&_item{
+					&_link{
+						display: block;
+						flex-wrap: wrap;
+						color: #fff;
+						font-size: clamp(14px, 1.6em, 16px);
+						@include hover;
+					}
+				}
+			}
+	
+			&_btn{
+				grid-column: 2/3;
+				grid-row: 2/3;
+				margin-top: auto;
+				margin-left: auto;
+				a{
+					&:hover{
+						opacity: $opacity;
+						background-color: transparent;
+					}
+				}
+			}
+
+			&_sns{
+				margin: 40px auto 0;
+				grid-column: 1/3;
+				grid-row: 3/4;
+
+				&_item{
+					&_link{
+						@include hover;
+					}
+				}
+			}
+	
+			&_copy{
+				grid-column: 1/3;
+				grid-row: 4/5;
+				margin-top: 50px;
+			}
+		}
+	}
+}
+
+@include responsive(sp){
+	.footer{
+		padding: 40px 0 30px;
+		&_inr{
+			&_addr{
+				margin-top: 40px;
+			}
+	
+			&_btn{
+	      width: max-content;
+				margin: 50px auto 0;
+			}
+
+			&_sns{
+				margin: 40px auto 0;
+			}
+	
+			&_copy{
+				margin-top: 60px;
+			}
+		}
+	}
+}

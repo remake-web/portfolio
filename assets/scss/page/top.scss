@@ -1,0 +1,286 @@
+@charset "utf-8";
+@use '../common/global' as *;
+
+/*--------------------------------------------------
+Re:makeについて
+--------------------------------------------------*/
+.top_about{
+  &_img{
+    img{
+      width: 100%;
+			height: auto;
+		}
+  }
+
+	&_con{
+		font-weight: 500;
+
+		&_ttl{
+			line-height: 1.8;
+		}
+	}
+}
+
+@include responsive(pc){
+	.top_about{
+		display: grid;
+		align-items: center;
+		grid-template-columns: .6fr .4fr;
+		height: calc(100vh - 100px);
+		min-height: 650px;
+
+		&_img{
+			grid-column: 2/3;
+			grid-row: 1/2;
+			margin-left: auto;
+
+			img{
+				max-width: 500px;
+			}
+		}
+	
+		&_con{
+			grid-column: 1/2;
+			grid-row: 1/2;
+
+			&_subttl{
+	      font-size: clamp(18px, 1.811vw, 25px);
+			}
+	
+			&_ttl{
+				margin-top: 10px;
+				font-size: clamp(24px, 2.89vw, 40px);
+			}
+	
+			&_btn{
+				margin-top: 60px;
+			}
+		}
+	}
+}
+
+@include responsive(sp){
+	.top_about{
+		margin-top: 50px;
+	
+		&_con{
+			margin-top: 60px;
+			&_subttl{
+	      font-size: 18px;
+			}
+	
+			&_ttl{
+	      margin-top: 10px;
+				font-size: 24px;
+			}
+	
+			&_btn{
+				width: max-content;
+				margin: 40px auto 0;
+			}
+		}
+	}
+}
+
+
+/*--------------------------------------------------
+制作実績
+--------------------------------------------------*/
+@include responsive(sp){
+	.top_works{
+		margin-top: 80px;
+	}
+}
+
+
+/*--------------------------------------------------
+サービス
+--------------------------------------------------*/
+.top_service{
+	&_list{
+		display: grid;
+
+		&_item{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			background-color: #fff;
+			border-radius: 10px;
+
+			&_con{
+				&_ttl{
+					text-align: center;
+					font-weight: 500;
+				}
+
+				&_desc{
+					color: $accent_col06;
+					line-height: 2;
+				}
+			}
+		}
+	}
+
+	&_btn{
+		width: max-content;
+	}
+}
+
+@include responsive(pc){
+	.top_service{
+		margin-top: 120px;
+	
+		&_list{
+			margin-top: 40px;
+		  grid-template-columns: repeat(3, 1fr);
+			gap: min(1.8vw, 35px);
+
+			&_item{
+				gap: 25px;
+				padding: clamp(31px, 4.1vw, 80px) clamp(20px, 1.5625vw, 30px);
+				&_img{
+					img{
+						height: clamp(45px, 5.2vw, 100px);
+					}
+				}
+	
+				&_con{
+					&_ttl{
+	          font-size: clamp(22px, 2.4em, 24px);
+					}
+	
+					&_desc{
+						font-size: clamp(14px, 1.6em, 16px);
+	          margin-top: 25px;
+					}
+				}
+			}
+		}
+	
+		&_btn{
+	    margin: 60px auto 0;
+		}
+	}
+}
+
+@include responsive(sp){
+	.top_service{
+		margin-top: 80px;
+	
+		&_list{
+			gap: 20px;
+			margin-top: 40px;
+
+			&_item{
+				gap: 20px;
+				padding: 40px 20px;
+
+				&_img{
+					img{
+	          width: 80px;
+					}
+				}
+	
+				&_con{
+					&_ttl{
+	          font-size: 20px;
+					}
+	
+					&_desc{
+	          margin-top: 20px;
+						font-size: 16px;
+					}
+				}
+			}
+		}
+	
+		&_btn{
+			margin: 40px auto 0;
+		}
+	}
+}
+
+
+/*--------------------------------------------------
+お知らせ
+--------------------------------------------------*/
+.top_news{
+	&_list{
+    .news_list_item{
+			&:first-child{
+				a{
+					padding-top: 0;
+				}
+			}
+		}
+	}
+}
+
+@include responsive(pc){
+	.top_news{
+		display: grid;
+		grid-template-columns: auto 1fr;
+		grid-template-rows: auto auto 1fr;
+		gap: 0 min(4.16vw, 80px);
+		margin-top: 120px;
+
+		&_ttl{
+	    grid-column: 1/2;
+			grid-row: 1/2;
+		}
+	
+		&_desc{
+			grid-column: 1/2;
+			grid-row: 2/3;
+			margin-top: 40px;
+	    font-size: clamp(14px, 1.8em, 18px);
+		}
+	
+		&_list{
+			grid-column: 2/3;
+			grid-row: 1/4;
+		}
+	
+		&_btn{
+			grid-column: 1/2;
+			grid-row: 3/4;
+			margin-top: 50px;
+		}
+	}
+}
+
+@include responsive(sp){
+	.top_news{
+		margin-top: 80px;
+	
+		&_desc{
+			margin-top: 30px;
+	    font-size: 16px;
+		}
+	
+		&_list{
+	    margin-top: 40px;
+		}
+	
+		&_btn{
+	    width: max-content;
+			margin: 30px auto 0;
+		}
+	}
+}
+
+
+/*--------------------------------------------------
+ブログ
+--------------------------------------------------*/
+@include responsive(pc){
+	.top_blog{
+    margin: 120px 0;
+	}
+}
+
+@include responsive(sp){
+	.top_blog{
+    margin: 80px 0;
+	}
+}
